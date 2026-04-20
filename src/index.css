@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  /* Stripe-inspired (home page) */
+  --color-stripe: #533afd;
+  --color-stripe-hover: #4434d4;
+  --color-stripe-deep: #2e2b8c;
+  --color-stripe-light: #b9b9f9;
+  --color-stripe-softer: #d6d9fc;
+  --color-navy: #061b31;
+  --color-navy-label: #273951;
+  --color-body: #64748d;
+  --color-brand-dark: #1c1e54;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f6f9fc;
+  --color-border: #e5edf5;
+  --color-ruby: #ea2261;
+  --color-magenta: #f96bee;
+  --color-success: #108c3d;
+
+  /* Mistral-inspired (BB course page) */
+  --color-mistral-black: #1f1f1f;
+  --color-mistral-orange: #fa520f;
+  --color-mistral-flame: #fb6424;
+  --color-mistral-amber: #ffa110;
+  --color-mistral-gold: #ffe295;
+  --color-mistral-cream: #fff0c2;
+  --color-mistral-ivory: #fffaeb;
+
+  /* Banco do Brasil palette (matched to real bb.com.br) */
+  --color-bb-yellow: #FAE100;
+  --color-bb-yellow-deep: #E8D000;
+  --color-bb-navy: #002A75;
+  --color-bb-navy-deep: #001858;
+  --color-bb-teal: #2DBDB6;
+
+  --font-sans: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'SFMono-Regular', monospace;
+}
+
+:root {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01";
+  color: #061b31;
+  background-color: #ffffff;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; font-weight: 300; }
+
+@layer base {
+  h1, h2, h3, h4, h5 { font-weight: 400; letter-spacing: -0.02em; color: inherit; }
+}
+
+/* Typography scale — NO hardcoded colors (inherit from parent / Tailwind utility) */
+.display-hero     { font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1.03; letter-spacing: -1.4px; font-weight: 500; }
+.display-large    { font-size: clamp(1.9rem, 3.8vw, 2.75rem); line-height: 1.12; letter-spacing: -0.96px; font-weight: 500; }
+.heading-section  { font-size: clamp(1.5rem, 3vw, 2rem);   line-height: 1.10; letter-spacing: -0.64px; font-weight: 500; }
+.heading-sub      { font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.26px; font-weight: 500; }
+.body-large       { font-size: 1.125rem; line-height: 1.5; font-weight: 400; }
+.caption-code     { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px; font-family: var(--font-sans); font-weight: 400; font-size: 1rem;
+  padding: 10px 18px; border-radius: 4px; line-height: 1; cursor: pointer;
+  transition: background .15s ease, color .15s ease, box-shadow .2s ease, transform .15s ease;
+  border: 1px solid transparent; text-decoration: none;
+}
+.btn-primary   { background: #533afd; color: #fff; box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px; }
+.btn-primary:hover { background: #4434d4; transform: translateY(-1px); }
+.btn-ghost     { background: transparent; color: #533afd; border-color: #b9b9f9; }
+.btn-ghost:hover { background: rgba(83,58,253,0.05); }
+.btn-on-dark   { background: #fff; color: #061b31; }
+.btn-on-dark:hover { background: #fff; transform: translateY(-1px); box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px; }
+.btn-lg        { padding: 14px 26px; }
+
+.card {
+  background: #fff; border: 1px solid #e5edf5; border-radius: 6px;
+  padding: 24px; box-shadow: rgba(23,23,23,0.08) 0px 15px 35px 0px;
+}
+.card-elevated { box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+  border-radius: 9999px; font-size: 12px; font-weight: 400;
+  border: 1px solid #e5edf5; background: #fff;
+}
+.pill-purple { background: rgba(83,58,253,0.08); color: #533afd; border-color: #d6d9fc; }
+.pill-success { background: rgba(21,190,83,0.15); color: #108c3d; border-color: rgba(21,190,83,0.3); }
+
+.gradient-hero {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(83,58,253,0.20), transparent 60%),
+    radial-gradient(900px 500px at 10% 10%, rgba(249,107,238,0.12), transparent 60%),
+    radial-gradient(800px 500px at 90% 20%, rgba(234,34,97,0.08), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
+}
+.gradient-dark  { background: linear-gradient(160deg, #0d253d 0%, #1c1e54 60%, #2e2b8c 100%); }
+.gradient-cta   { background: linear-gradient(90deg, #533afd 0%, #665efd 50%, #f96bee 100%); }
+.gradient-accent{ background: linear-gradient(90deg, #ea2261 0%, #f96bee 100%); }
+
+details summary::-webkit-details-marker { display: none; }
+details summary { list-style: none; cursor: pointer; }
+
+/* ========= BB / Mistral banner + page ========= */
+.bb-banner {
+  background: linear-gradient(90deg, #FAE100 0%, #FFCC00 50%, #FAE100 100%);
+  color: #002A75;
+  border-bottom: 2px solid #002A75;
+}
+.bb-banner .marquee-pulse {
+  animation: bbPulse 2.5s ease-in-out infinite;
+}
+@keyframes bbPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.mistral-surface    { background: #fffaeb; color: #1f1f1f; }
+.mistral-cream      { background: #fff0c2; color: #1f1f1f; }
+.mistral-dark       { background: #1f1f1f; color: #fffaeb; }
+
+.bb-gradient-hero {
+  background:
+    radial-gradient(1000px 500px at 20% 10%, rgba(250,225,40,0.55), transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, rgba(255,161,16,0.35), transparent 60%),
+    linear-gradient(180deg, #fffaeb 0%, #fff0c2 100%);
+}
+.bb-gradient-block {
+  background: linear-gradient(135deg, #FAE100 0%, #FFCC00 40%, #FFA110 80%, #fb6424 100%);
+}
+
+.bb-shadow { box-shadow: rgba(127,99,21,0.18) -8px 16px 39px, rgba(127,99,21,0.12) -20px 40px 60px; }
+
+.bb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 24px; font-size: 15px; font-weight: 500; line-height: 1;
+  border: 1.5px solid transparent; border-radius: 2px; cursor: pointer;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  transition: background .15s ease, color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.bb-btn-primary { background: #002A75; color: #FAE100; }
+.bb-btn-primary:hover { background: #002A75; transform: translateY(-1px); }
+.bb-btn-yellow  { background: #FAE100; color: #1f1f1f; border-color: #1f1f1f; }
+.bb-btn-yellow:hover { background: #F5CE1C; transform: translateY(-1px); }
+.bb-btn-dark    { background: #1f1f1f; color: #FAE100; }
+.bb-btn-dark:hover { background: #000; transform: translateY(-1px); }
+
+.display-mistral   { font-size: clamp(2.5rem, 7vw, 5.125rem); line-height: 1; letter-spacing: -2.05px; font-weight: 500; }
+.display-mistral-md{ font-size: clamp(1.75rem, 4.5vw, 3.5rem);  line-height: 0.98; letter-spacing: -1.2px; font-weight: 500; }
+
+.bb-card {
+  background: #fffaeb; border: 1.5px solid #1f1f1f; border-radius: 2px;
+  padding: 28px;
+}
+.bb-card-filled { background: #FAE100; border: 1.5px solid #1f1f1f; border-radius: 2px; padding: 28px; color: #1f1f1f; }
